@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">OCR Demo</string>
+    <string name="tvInstructions">Click button to extract text</string>
+    <string name="btnExtract">EXTRACT</string>
+    <string name="empty" />
+    <string name="analyzed_content">Analyzed content goes here</string>
+</resources>
