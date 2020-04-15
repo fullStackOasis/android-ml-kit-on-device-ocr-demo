@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void analyze() {
+        hideTextViewAndShowProgressBar();
         Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(),
                 R.drawable.moby_dick_chapter_1);
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         t.addOnCompleteListener(new OnCompleteListener<FirebaseVisionText>() {
             @Override
             public void onComplete(@NonNull Task<FirebaseVisionText> task) {
+                hideProgressBarAndShowTextView();
                 if (task.isSuccessful()) {
                     FirebaseVisionText result = task.getResult();
                     String text = result.getText();
@@ -55,6 +58,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         });
+    }
+
+    protected void hideProgressBarAndShowTextView() {
+        TextView tv = findViewById(R.id.tvContent);
+        tv.setVisibility(View.VISIBLE);
+        ProgressBar pb = findViewById(R.id.progressBar);
+        pb.setVisibility(View.GONE);
+    }
+    protected void hideTextViewAndShowProgressBar() {
+        ProgressBar pb = findViewById(R.id.progressBar);
+        pb.setVisibility(View.VISIBLE);
+        TextView tv = findViewById(R.id.tvContent);
+        tv.setVisibility(View.GONE);
     }
 
     @Override
