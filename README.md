@@ -6,4 +6,4 @@ This is not done using the cloud version of ML Kit. The project uses Firebase's 
 
 The screenshot shows the app after text has been extracted.
 
-[Text extracted](https://github.com/fullStackOasis/android-ml-kit-on-device-ocr-demo/raw/master/android_ml_kit_ocr_demo.png)
+![Text extracted](https://github.com/fullStackOasis/android-ml-kit-on-device-ocr-demo/raw/master/android_ml_kit_ocr_demo.png)
