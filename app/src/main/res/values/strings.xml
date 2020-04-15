@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">OCR Demo</string>
     <string name="tvInstructions">Click button to extract text</string>
-    <string name="btnExtract">EXTRACT</string>
+    <string name="extract">EXTRACT</string>
     <string name="empty" />
     <string name="analyzed_content">Analyzed content goes here</string>
+    <string name="to_be_analyzed">Text to be analyzed</string>
+    <string name="reset">reset</string>
 </resources>

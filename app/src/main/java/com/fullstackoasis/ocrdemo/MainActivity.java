@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,12 +27,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button b = findViewById(R.id.button);
-        b.setOnClickListener(this);
+        Button bExtract = findViewById(R.id.btnExtract);
+        bExtract.setOnClickListener(this);
+        Button bReset = findViewById(R.id.btnReset);
+        bReset.setOnClickListener(this);
     }
 
     public void analyze() {
-        //Drawable d = getResources().getDrawable(R.drawable.moby_dick_chapter_1);
         Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(),
                 R.drawable.moby_dick_chapter_1);
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
@@ -44,7 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (task.isSuccessful()) {
                     FirebaseVisionText result = task.getResult();
                     String text = result.getText();
-                    Log.d(TAG, text);
+                    TextView tv = findViewById(R.id.tvContent);
+                    tv.setText(text);
                 } else {
                     Log.d(TAG, "FAILED");
                     Exception e = task.getException();
@@ -56,6 +59,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        analyze();
+        Log.d(TAG, "Hello " + v.getId());
+        switch (v.getId()) {
+            case R.id.btnReset:
+                TextView tv = findViewById(R.id.tvContent);
+                tv.setText(R.string.empty);
+                Log.d(TAG, "set to empty?");
+                break;
+            case R.id.btnExtract:
+                analyze();
+                break;
+            default:
+                throw new RuntimeException("Unexpected button");
+
+        }
     }
 }
